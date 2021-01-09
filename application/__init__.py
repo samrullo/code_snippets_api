@@ -21,7 +21,6 @@ def create_app(config_name):
     moment.init_app(app)
 
     with app.app_context():
-        db.create_all()
 
         from .main import main_bp
         app.register_blueprint(main_bp)
@@ -31,5 +30,7 @@ def create_app(config_name):
 
         from .api_v1 import api_v1_bp
         app.register_blueprint(api_v1_bp)
+
+        db.create_all()
 
     return app
